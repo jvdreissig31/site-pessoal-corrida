@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Jv'RUNLIFE | Tênis</title>
+    <meta name="description" content="Acompanhe a jornada de Jv Dreissig no asfalto: de recordes no Rio Grande do Sul aos treinos em Brasília. Dicas de pace, tênis e superação.">
+    <meta name="keywords" content="Jv Dreissig, Jv RunLife, corrida de rua, meia maratona, Brasília, recorde pessoal, pace de corrida">
+    <meta name="author" content="Jv Dreissig">
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+    <meta property="og:title" content="Jv'RUNLIFE - Evoluindo a cada KM">
+    <meta property="og:description" content="Conheça a trajetória e os treinos de Jv Dreissig.">
+    <meta property="og:image" content="img/foto4.jpeg">
+    <meta property="og:url" content="https://seusuario.github.io/seu-repositorio/">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Jv'RUNLIFE</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tabela.html">Paces</a></li>
+                <li><a href="tenis.html">Tênis</a></li>
+                <button id="theme-toggle" style="cursor:pointer; background:none; border:none; color:white; font-size:1.2rem;" aria-label="Trocar tema">🌓</button>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Equipamentos Utilizados</h2><br>
+        <div class="shoes-grid">
+            <div class="shoe-card">
+                <img src="img/AsiscNovablast5.webp" alt="Novablast 5">
+                <h3>Asics Novablast 5</h3>
+                <p>Utilizado Atualmente</p>
+            </div>
+            <div class="shoe-card">
+                <img src="img/Corre4.jpg" alt="Corre 4">
+                <h3>Olympikus Corre 4</h3>
+                <p>Primeiro Tênis Oficial <br>- APOSENTADO - <br>586km corridos </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-icons">
+            <a href="https://www.instagram.com/jvdreissig?igsh=MTJyMDFzNDhocnlmbA==" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+            </a>
+            <a href="https://www.strava.com/athletes/108721616" target="_blank" rel="noopener noreferrer">
+                <img src="img/strava.png" alt="Strava">
+            </a>
+        </div>
+        <a href="index.html" class="btn-back">Voltar para Início</a>
+        <p>© 2026 Jv'RunLife - Evoluindo a cada KM</p>
+    </footer>
+
+    <script>
+        const btn = document.getElementById("theme-toggle");
+        const currentTheme = localStorage.getItem("theme");
+
+       
+        if (currentTheme === "dark") {
+            document.body.classList.add("dark-theme");
+        }
+
+        btn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            let theme = "light";
+            if (document.body.classList.contains("dark-theme")) {
+                theme = "dark";
+            }
+            localStorage.setItem("theme", theme);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Jv'RUNLIFE | Site de Corrida Jv Dreissig</title>
+    <meta name="description" content="Acompanhe a jornada de Jv Dreissig no asfalto: de recordes no Rio Grande do Sul aos treinos em Brasília. Dicas de pace, tênis e superação.">
+    <meta name="keywords" content="Jv Dreissig, Jv RunLife, corrida de rua, meia maratona, Brasília, recorde pessoal, pace de corrida">
+    <meta name="author" content="Jv Dreissig">
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+    <meta property="og:title" content="Jv'RUNLIFE - Evoluindo a cada KM">
+    <meta property="og:description" content="Conheça a trajetória e os treinos de Jv Dreissig.">
+    <meta property="og:image" content="img/foto4.jpeg">
+    <meta property="og:url" content="https://seusuario.github.io/seu-repositorio/">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Jv'RUNLIFE</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tabela.html">Paces</a></li>
+                <li><a href="tenis.html">Tênis</a></li>
+                <button id="theme-toggle" style="cursor:pointer; background:none; border:none; color:white; font-size:1.2rem;" aria-label="Alternar tema">🌓</button>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Minha Jornada no Asfalto</h1>
+        
+        <div class="carousel-container">
+            <div class="carousel-track" id="track">
+                <img src="img/foto4.jpeg" class="carousel-item" alt="Jv Dreissig correndo na Live!Run XP">
+                <img src="img/foto6.jpeg" class="carousel-item" alt="Pódio Jv Dreissig 1º lugar">
+                <img src="img/foto5.jpeg" class="carousel-item" alt="Treino de corrida em Brasília">
+            </div>
+        </div>
+        <h3>Jv Dreissig</h3>
+        <br>
+
+        <h2>Das Ruas do Sul ao Planalto Central</h2>
+        <article>
+            <p>Minha jornada no atletismo de rua começou no primeiro semestre de 2025. O que iniciou como um incentivo familiar, guiado pelas dicas e mentoria da minha prima Manuela, rapidamente se transformou em algo maior. Ao longo daquele ano, a corrida deixou de ser apenas um exercício físico para se tornar um refúgio mental e uma paixão genuína.</p>
+            
+            <p>Em setembro de 2025, estreei em competições na <strong>Live!Run XP (Etapa Porto Alegre)</strong>. O desafio era grande: uma meia maratona logo de cara. O resultado, porém, superou as expectativas: conquistei o 1º lugar na categoria Masculino até 19 anos, o que serviu de combustível para intensificar minha dedicação aos treinos.</p>
+            
+            <p>Fechei o ciclo de 2025 com a <strong>Poa Day Run (3ª Etapa)</strong>, onde não apenas conquistei o título na categoria 18/19 anos, mas também estabeleci meu novo recorde pessoal (RP).</p>
+            
+            <p>Atualmente, inicio um novo capítulo no <strong>Distrito Federal</strong>. A mudança do Rio Grande do Sul para Brasília trouxe novos desafios climáticos e altimétricos, mas também uma infraestrutura de excelência para o esporte. Sigo motivado para evoluir tecnicamente e buscar novas marcas nas ruas da capital federal.</p>
+        </article>
+    </main>
+        
+    <footer>
+        <div class="footer-icons">
+            <a href="https://www.instagram.com/jvdreissig?igsh=MTJyMDFzNDhocnlmbA==" target="_blank" aria-label="Instagram">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Jv Dreissig">
+            </a>
+            <a href="https://www.strava.com/athletes/108721616" target="_blank" rel="noopener noreferrer" aria-label="Strava">
+                <img src="img/strava.png" alt="Strava Jv Dreissig">
+            </a>
+        </div>
+        <p>© 2026 Jv'RunLife - Evoluindo a cada KM</p>
+    </footer>
+
+    <script>
+        // Carrossel Automático
+        const track = document.getElementById('track');
+        let i = 0;
+        setInterval(() => {
+            i = (i + 1) % 3;
+            track.style.transform = `translateX(-${i * 100}%)`;
+        }, 3000);
+
+        // Lógica de Tema (Light/Dark)
+        const btn = document.getElementById("theme-toggle");
+        const currentTheme = localStorage.getItem("theme");
+
+        if (currentTheme === "dark") {
+            document.body.classList.add("dark-theme");
+        }
+
+        btn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            let theme = "light";
+            if (document.body.classList.contains("dark-theme")) {
+                theme = "dark";
+            }
+            localStorage.setItem("theme", theme);
+        });
+    </script>
+</body>
+</html>
