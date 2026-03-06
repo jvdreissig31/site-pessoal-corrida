@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jv'RUNLIFE | Paces</title>
     <meta name="description" content="Acompanhe a jornada de Jv Dreissig no asfalto: de recordes no Rio Grande do Sul aos treinos em Brasília. Dicas de pace, tênis e superação.">
     <meta name="keywords" content="Jv Dreissig, Jv RunLife, corrida de rua, meia maratona, Brasília, recorde pessoal, pace de corrida">
@@ -24,6 +25,8 @@
                 <li><a href="index.html">Início</a></li>
                 <li><a href="tabela.html">Paces</a></li>
                 <li><a href="tenis.html">Tênis</a></li>
+                <li><a href="informacoes.html">Informações</a></li>
+                <li><a href="outros.html">Outros</a></li>
                 <button id="theme-toggle" style="cursor:pointer; background:none; border:none; color:white; font-size:1.2rem; margin-left: 10px;">🌓</button>
             </ul>
         </nav>
@@ -35,7 +38,7 @@
             
             <div class="calc-inputs">
                 <input type="number" id="distancia" placeholder="Distância (km) ex: 10">
-                <input type="text" id="tempo" placeholder="Tempo (MM:SS) ex: 48:30">
+                <input type="text" id="tempo" inputmode="numeric" placeholder="Tempo (MM:SS) ex: 48:30">
                 <button class="btn-calc" onclick="calcularPace()">Calcular Pace</button>
             </div>
             
@@ -43,15 +46,6 @@
         </div>
 
     <div class="container">
-        <div class="carousel-container">
-            <div class="carousel-track" id="track">
-                <img src="img/foto1.jpeg" class="carousel-item">
-                <img src="img/foto7.jpeg" class="carousel-item">
-                <img src="img/foto2.jpeg" class="carousel-item">
-            </div>
-        </div>
-        <h3>Jv Dreissig</h3>
-        <br>
         <h2>Tabela de Distâncias e Tempos</h2><br>
         <div class="table-wrapper">
             <table>
