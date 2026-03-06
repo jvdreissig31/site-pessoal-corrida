@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Jv'RUNLIFE | Outros</title>
+    <meta name="description" content="Acompanhe a jornada de Jv Dreissig no asfalto: de recordes no Rio Grande do Sul aos treinos em Brasília. Dicas de pace, tênis e superação.">
+    <meta name="keywords" content="Jv Dreissig, Jv RunLife, corrida de rua, meia maratona, Brasília, recorde pessoal, pace de corrida">
+    <meta name="author" content="Jv Dreissig">
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+    <meta property="og:title" content="Jv'RUNLIFE - Evoluindo a cada KM">
+    <meta property="og:description" content="Conheça a trajetória e os treinos de Jv Dreissig.">
+    <meta property="og:image" content="img/foto4.jpeg">
+    <meta property="og:url" content="https://seusuario.github.io/seu-repositorio/">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Jv'RUNLIFE</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tabela.html">Paces</a></li>
+                <li><a href="tenis.html">Tênis</a></li>
+                <li><a href="informacoes.html">Informações</a></li>
+                <li><a href="outros.html">Outros</a></li>
+                <button id="theme-toggle" style="cursor:pointer; background:none; border:none; color:white; font-size:1.2rem; margin-left: 10px;">🌓</button>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main class="container">
+            <h1>Me siga no Strava!</h1>
+            <p>(Abaixo: Resumo das atividades da semana atual)</p>
+            <br>
+            <iframe height='180' width='400' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/108721616/activity-summary/e2c88a503712dcd193177f14da62098e18fb4f0d'></iframe><br>
+             <a href="https://www.strava.com/athletes/108721616" class="btn-back">Perfil Completo no Strava</a>
+            <br><br><br>
+            <h1>Ouça minha playlist durante as corridas!</h1>       
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0O6zRijVHy32KibamvdKyB?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <a href=" https://open.spotify.com/playlist/0O6zRijVHy32KibamvdKyB?si=42c98579de21452d" class="btn-back">Abra no Spotify</a>
+            
+        </main>
+    </div>
+<footer>
+        <div class="footer-icons">
+            <a href="https://www.instagram.com/jvdreissig?igsh=MTJyMDFzNDhocnlmbA==" target="_blank" aria-label="Instagram">
+                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Jv Dreissig">
+            </a>
+        </div>
+        <p>© 2026 Jv'RunLife - Evoluindo a cada KM</p>
+</footer>
+ <script>
+      // Lógica de Tema (Light/Dark)
+        const btn = document.getElementById("theme-toggle");
+        const currentTheme = localStorage.getItem("theme");
+
+        if (currentTheme === "dark") {
+            document.body.classList.add("dark-theme");
+        }
+
+        btn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            let theme = "light";
+            if (document.body.classList.contains("dark-theme")) {
+                theme = "dark";
+            }
+            localStorage.setItem("theme", theme);
+        });
+    </script>
+</body>
+</html>
