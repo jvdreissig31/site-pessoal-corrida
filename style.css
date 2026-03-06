@@ -27,8 +27,13 @@ nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
 nav a { color: white; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
 nav a:hover { color: var(--accent); }
 
-.container { max-width: 1000px; margin: 30px auto; padding: 0 20px; min-height: 70vh; text-align: center; }
-
+.container { 
+    max-width: 1000px; 
+    margin: 10px auto; /* Reduzi de 30px para 10px para aproximar mais */
+    padding: 0 20px; 
+    min-height: auto; /* MUDANÇA AQUI: de 70vh para auto */
+    text-align: center; 
+}
 /* --- CARROSSEL  --- */
 .carousel-container { 
     width: 350px;           
@@ -68,6 +73,21 @@ table { width: 100%; border-collapse: collapse; }
 th { background: var(--primary); color: white; padding: 12px; text-align: center; }
 td { padding: 12px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
 tr:hover { background: rgba(0,0,0,0.02); }
+
+.galeria-conquistas {
+    display: flex;         /* Ativa o modo flexível */
+    flex-wrap: wrap;       /* Se não couber na linha, pula para a de baixo */
+    gap: 20px;            /* Espaço entre as imagens */
+    justify-content: center; /* Centraliza as imagens */
+}
+
+.galeria-conquistas img {
+    width: 100%;           /* Largura total em telas pequenas (celular) */
+    max-width: 450px;      /* Tamanho máximo para não estourar em telas grandes */
+    height: auto;          /* Mantém a proporção */
+    border-radius: 10px;   /* Cantos arredondados (estético) */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra leve */
+}
 
 /* Calculadora */
 .calc-container {
@@ -113,6 +133,11 @@ tr:hover { background: rgba(0,0,0,0.02); }
     display: none;
     background: rgba(230, 57, 70, 0.1);
     color: var(--accent);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Grid de Tênis */
