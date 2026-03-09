@@ -32,18 +32,21 @@
         </nav>
     </header>
 
-     <div class="calc-container">
-            <h3><span style="color: var(--accent);">⚡</span> Calculadora de Pace</h3>
-            <p style="font-size: 0.9rem; color: #666;">Descubra o ritmo médio do seu treino:</p>
-            
-            <div class="calc-inputs">
-                <input type="number" id="distancia" placeholder="Distância (km) ex: 10">
-                <input type="text" id="tempo" inputmode="numeric" placeholder="Tempo (MM:SS) ex: 48:30">
-                <button class="btn-calc" onclick="calcularPace()">Calcular Pace</button>
-            </div>
-            
-            <div id="resultadoPace" style="display: none; margin-top: 20px; font-weight: bold; color: var(--accent); padding: 15px; border-radius: 8px; background: rgba(230, 57, 70, 0.1);"></div>
+    <div class="calc-container">
+        <h3><span style="color: var(--accent);">⚡</span> Calculadora de Pace</h3>
+        <p style="font-size: 0.9rem; color: #666;">Descubra o ritmo médio do seu treino:</p>
+    
+        <div class="calc-inputs">
+            <input type="text" id="distancia" inputmode="decimal" placeholder="Distância (km) ex: 10">
+        
+            <input type="text" id="tempoMinutos" inputmode="numeric" placeholder="Min ex: 48">
+            <input type="text" id="tempoSegundos" inputmode="numeric" placeholder="Seg ex: 30">
+        
+            <button class="btn-calc" onclick="calcularPace()">Calcular Pace</button>
         </div>
+    
+        <div id="resultadoPace" style="display: none; margin-top: 20px; font-weight: bold; color: var(--accent); padding: 15px; border-radius: 8px; background: rgba(230, 57, 70, 0.1);"></div>
+    </div>
 
     <div class="container">
         <h2>Tabela de Distâncias e Tempos</h2><br>
@@ -109,28 +112,39 @@
             });
         }
 
-        // --- Lógica da Calculadora de Pace ---
         function calcularPace() {
-            const dist = document.getElementById('distancia').value;
-            const tempoStr = document.getElementById('tempo').value;
-            const display = document.getElementById('resultadoPace');
+        // Pega os valores e converte vírgula para ponto na distância
+            let distanciaStr = document.getElementById('distancia').value;
+            let distancia = parseFloat(distanciaStr.replace(',', '.'));
+            
+            let minutos = parseInt(document.getElementById('tempoMinutos').value) || 0;
+            let segundos = parseInt(document.getElementById('tempoSegundos').value) || 0;
+            let display = document.getElementById('resultadoPace');
 
-            if (!dist || !tempoStr.includes(':')) {
+        // Validação para evitar erros se os campos estiverem vazios
+            if (!distancia || distancia <= 0 || (minutos === 0 && segundos === 0)) {
                 display.style.display = 'block';
-                display.innerText = "Por favor, preencha a distância e o tempo (MM:SS).";
+                display.innerText = "Por favor, preencha a distância e o tempo corretamente.";
                 return;
             }
 
-            const partes = tempoStr.split(':');
-            const totalMinutos = parseInt(partes[0]) + (parseInt(partes[1]) / 60);
-            const paceDecimal = totalMinutos / dist;
+        // Cálculo do Pace
+            const tempoTotalEmMinutos = minutos + (segundos / 60);
+            const paceDecimal = tempoTotalEmMinutos / distancia;
             
-            const paceMinutos = Math.floor(paceDecimal);
-            const paceSegundos = Math.round((paceDecimal - paceMinutos) * 60);
+            let paceMinutos = Math.floor(paceDecimal);
+            let paceSegundos = Math.round((paceDecimal - paceMinutos) * 60);
+
+            if (paceSegundos === 60) {
+                paceMinutos += 1;
+                paceSegundos = 0;
+            }       
+            
             const segundosFormatados = paceSegundos < 10 ? '0' + paceSegundos : paceSegundos;
 
-            display.style.display = 'block';
-            display.innerText = `Seu pace médio é: ${paceMinutos}:${segundosFormatados} min/km`;
+        // Mostra o resultado final
+                display.style.display = 'block';
+                display.innerHTML = `Seu pace médio é: <strong>${paceMinutos}:${segundosFormatados} min/km</strong>`;
         }
     </script>
 </body>
