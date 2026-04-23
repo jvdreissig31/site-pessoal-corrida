@@ -35,21 +35,22 @@
     <div class="calc-container">
         <h3><span style="color: var(--accent);">⚡</span> Calculadora de Pace</h3>
         <p style="font-size: 0.9rem; color: #666;">Descubra o ritmo médio do seu treino:</p>
-    
+
         <div class="calc-inputs">
-            <input type="text" id="distancia" inputmode="decimal" placeholder="Distância (km) ex: 10">
-        
-            <input type="text" id="tempoMinutos" inputmode="numeric" placeholder="Min ex: 48">
-            <input type="text" id="tempoSegundos" inputmode="numeric" placeholder="Seg ex: 30">
-        
+            <input type="text" id="distancia" inputmode="decimal" placeholder="Distância (km) ex: 21">
+
+            <input type="text" id="tempoHoras" inputmode="numeric" placeholder="Horas ex: 1">
+            <input type="text" id="tempoMinutos" inputmode="numeric" placeholder="Min ex: 40">
+            <input type="text" id="tempoSegundos" inputmode="numeric" placeholder="Seg ex: 00">
+
             <button class="btn-calc" onclick="calcularPace()">Calcular Pace</button>
         </div>
-    
+
         <div id="resultadoPace" style="display: none; margin-top: 20px; font-weight: bold; color: var(--accent); padding: 15px; border-radius: 8px; background: rgba(230, 57, 70, 0.1);"></div>
     </div>
 
     <div class="container">
-        <h2>Tabela de Distâncias e Tempos</h2><br>
+        <h2>Tabela de Melhores Tempos</h2><br>
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -63,10 +64,10 @@
                 </thead>
                 <tbody id="corpo-tabela">
                     <tr><td>1 km</td><td>4:03/km</td><td>00:04:03</td><td>Treino</td><td>20 Set 2025</td></tr>
-                    <tr><td>5 km</td><td>4:32/km</td><td>00:22:38</td><td>Treino</td><td>29 Dez 2025</td></tr>
-                    <tr><td>10 km</td><td>4:51/km</td><td>00:48:04</td><td>Poa Day Run</td><td>30 Nov 2025</td></tr>
-                    <tr><td>15 km</td><td>4:50/km</td><td>01:12:30</td><td>Poa Day Run</td><td>30 Nov 2025</td></tr>
-                    <tr><td>21 km</td><td>4:55/km</td><td>01:43:18</td><td>Poa Day Run</td><td>30 Nov 2025</td></tr>
+                    <tr><td>5 km</td><td>4:27/km</td><td>00:22:13</td><td>Inclusão - Instituto Olga</td><td>22 Mar 2026</td></tr>
+                    <tr><td>10 km</td><td>4:36/km</td><td>00:45:58</td><td>Inclusão - Instituto Olga</td><td>22 Mar 2026</td></tr>
+                    <tr><td>15 km</td><td>4:47/km</td><td>01:11:47</td><td>LIVE!Run XP - Brasília/DF</td><td>19 Abr 2026</td></tr>
+                    <tr><td>21 km</td><td>4:51/km</td><td>01:41:55</td><td>LIVE!Run XP - Brasília/DF</td><td>19 Abr 2026</td></tr>
                     <tr><td>42 km</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
                 </tbody>
             </table>
@@ -113,41 +114,43 @@
             });
         }
 
-        function calcularPace() {
-        // Pega os valores e converte vírgula para ponto na distância
-            let distanciaStr = document.getElementById('distancia').value;
-            let distancia = parseFloat(distanciaStr.replace(',', '.'));
-            
-            let minutos = parseInt(document.getElementById('tempoMinutos').value) || 0;
-            let segundos = parseInt(document.getElementById('tempoSegundos').value) || 0;
-            let display = document.getElementById('resultadoPace');
+    function calcularPace() {
+    // Pega os valores e converte vírgula para ponto na distância
+    let distanciaStr = document.getElementById('distancia').value;
+    let distancia = parseFloat(distanciaStr.replace(',', '.'));
+    
+    // Puxa as horas, minutos e segundos (tratando campos vazios como 0)
+    let horas = parseInt(document.getElementById('tempoHoras').value) || 0;
+    let minutos = parseInt(document.getElementById('tempoMinutos').value) || 0;
+    let segundos = parseInt(document.getElementById('tempoSegundos').value) || 0;
+    let display = document.getElementById('resultadoPace');
 
-        // Validação para evitar erros se os campos estiverem vazios
-            if (!distancia || distancia <= 0 || (minutos === 0 && segundos === 0)) {
-                display.style.display = 'block';
-                display.innerText = "Por favor, preencha a distância e o tempo corretamente.";
-                return;
-            }
+    // Validação para evitar erros se os campos estiverem vazios
+    if (!distancia || distancia <= 0 || (horas === 0 && minutos === 0 && segundos === 0)) {
+        display.style.display = 'block';
+        display.innerText = "Por favor, preencha a distância e o tempo corretamente.";
+        return;
+    }
 
-        // Cálculo do Pace
-            const tempoTotalEmMinutos = minutos + (segundos / 60);
-            const paceDecimal = tempoTotalEmMinutos / distancia;
-            
-            let paceMinutos = Math.floor(paceDecimal);
-            let paceSegundos = Math.round((paceDecimal - paceMinutos) * 60);
+    // Cálculo do Pace: Convertendo as horas para minutos e somando ao total
+    const tempoTotalEmMinutos = (horas * 60) + minutos + (segundos / 60);
+    const paceDecimal = tempoTotalEmMinutos / distancia;
+    
+    let paceMinutos = Math.floor(paceDecimal);
+    let paceSegundos = Math.round((paceDecimal - paceMinutos) * 60);
 
-            if (paceSegundos === 60) {
-                paceMinutos += 1;
-                paceSegundos = 0;
-            }       
-            
-            const segundosFormatados = paceSegundos < 10 ? '0' + paceSegundos : paceSegundos;
+    // Evita o bug visual do segundo chegar a 60
+    if (paceSegundos === 60) {
+        paceMinutos += 1;
+        paceSegundos = 0;
+    }       
+    
+    const segundosFormatados = paceSegundos < 10 ? '0' + paceSegundos : paceSegundos;
 
-        // Mostra o resultado final
-                display.style.display = 'block';
-                display.innerHTML = `Seu pace médio é: <strong>${paceMinutos}:${segundosFormatados} min/km</strong>`;
-        }
+    // Mostra o resultado final
+    display.style.display = 'block';
+    display.innerHTML = `Seu pace médio é: <strong>${paceMinutos}:${segundosFormatados} min/km</strong>`;
+    }
     </script>
 </body>
 </html>
-
